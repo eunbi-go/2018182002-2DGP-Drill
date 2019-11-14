@@ -50,13 +50,7 @@ class IdleState:
     @staticmethod
     def exit(boy, event):
         if event == SPACE and boy.is_jump == False:
-            boy.is_jump = True
-            boy.x1 = boy.x
-            boy.y1 = boy.y
-            boy.x2 = boy.x
-            boy.y2 = boy.y + 200
-            boy.x3 = boy.x
-            boy.y3 = 90
+            boy.jump()
         pass
 
     @staticmethod
@@ -91,13 +85,7 @@ class RunState:
     @staticmethod
     def exit(boy, event):
         if event == SPACE and boy.is_jump == False:
-            boy.is_jump = True
-            boy.x1 = boy.x
-            boy.y1 = boy.y
-            boy.x2 = boy.x
-            boy.y2 = boy.y + 300
-            boy.x3 = boy.x
-            boy.y3 = 90
+            boy.jump()
 
     @staticmethod
     def do(boy):
@@ -176,6 +164,15 @@ class Boy:
 
     def add_event(self, event):
         self.event_que.insert(0, event)
+
+    def jump(self):
+        self.is_jump = True
+        self.x1 = self.x
+        self.y1 = self.y
+        self.x2 = self.x
+        self.y2 = self.y + 300
+        self.x3 = self.x
+        self.y3 = 90
 
     def update(self):
         self.cur_state.do(self)
